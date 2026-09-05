@@ -1,0 +1,17 @@
+{
+  "name": "week-automodify",
+  "version": "1.0.0",
+  "description": "機房月檢查表星期自動填寫工具",
+  "private": true,
+  "scripts": {
+    "test": "node run-tests.js",
+    "samples": "node tools/make-samples.js",
+    "holidays": "node tools/fetch-holidays.js",
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "docx": "^9.0.0",
+    "exceljs": "^4.4.0",
+    "jszip": "^3.10.1"
+  }
+}

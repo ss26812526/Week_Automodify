@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>測試結果</title>
+<style>
+  body { font-family: "Microsoft JhengHei", sans-serif; margin: 2rem; background: #fafafa; }
+  h1 { font-size: 1.2rem; }
+  .item { padding: .3rem .6rem; margin: .15rem 0; border-radius: 4px; font-size: .9rem; }
+  .pass { background: #e6f7e6; color: #1a5c1a; }
+  .fail { background: #fdecea; color: #8c1c13; }
+  .err { font-family: monospace; font-size: .8rem; margin-top: .3rem; white-space: pre-wrap; }
+  #summary { margin-top: 1.5rem; font-weight: bold; font-size: 1.05rem; }
+</style>
+</head>
+<body>
+<h1>測試結果</h1>
+<div id="output"></div>
+<div id="summary">執行中……</div>
+
+<script src="src/test-runner.js"></script>
+<script src="src/calendar-core.js"></script>
+<script src="tests/test-runner.test.js"></script>
+<script src="tests/calendar-core.test.js"></script>
+<script src="src/year-month-text.js"></script>
+<script src="tests/year-month-text.test.js"></script>
+<script src="src/holidays-tw.js"></script>
+<script src="tests/holidays-tw.test.js"></script>
+<script src="src/holidays-builtin.js"></script>
+<script src="src/month-model.js"></script>
+<script src="tests/month-model.test.js"></script>
+<script src="src/table-analysis.js"></script>
+<script src="tests/table-analysis.test.js"></script>
+<script src="src/write-plan.js"></script>
+<script src="tests/write-plan.test.js"></script>
+<script src="src/xml-text.js"></script>
+<script src="src/excel-adapter.js"></script>
+<script src="tests/xml-text.test.js"></script>
+<script src="tests/excel-adapter.test.js"></script>
+
+<script>
+TestRunner.run().then(function (summary) {
+  var out = document.getElementById('output');
+  summary.results.forEach(function (r) {
+    var div = document.createElement('div');
+    div.className = 'item ' + (r.pass ? 'pass' : 'fail');
+    div.textContent = (r.pass ? '✓ ' : '✗ ') + r.suite + ' — ' + r.name;
+    if (!r.pass) {
+      var e = document.createElement('div');
+      e.className = 'err';
+      e.textContent = r.error;
+      div.appendChild(e);
+    }
+    out.appendChild(div);
+  });
+  var s = document.getElementById('summary');
+  s.textContent = '共 ' + summary.total + ' 項，通過 ' + summary.passed + ' 項，失敗 ' + summary.failed + ' 項';
+  s.style.color = summary.failed > 0 ? '#8c1c13' : '#1a5c1a';
+});
+</script>
+</body>
+</html>
