@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>機房月檢查表 星期填寫工具</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<h1>機房月檢查表　星期填寫工具</h1>
+
+<div class="panel">
+  <h2>一、選擇年月</h2>
+  <div class="row">
+    <select id="year"></select>
+    <select id="month"></select>
+    <span id="source" class="muted"></span>
+  </div>
+  <div id="calendar" style="margin-top:.8rem"></div>
+  <p class="muted">紅色為假日、藍色為補班日。點一下可以切換某天的假日狀態（例如颱風假）。</p>
+</div>
+
+<div class="panel">
+  <h2>二、選擇檔案</h2>
+  <div id="drop">把 .xlsx 或 .docx 檔拖到這裡，或點一下選擇檔案</div>
+  <input type="file" id="file" accept=".xlsx,.docx" class="hidden">
+  <div id="fileInfo" class="muted" style="margin-top:.6rem"></div>
+</div>
+
+<div class="panel hidden" id="manualPanel">
+  <h2>指定欄位</h2>
+  <p class="muted">工具找不到「日期」與「星期」欄位標題，請直接指定是哪幾欄。指定過一次之後，
+    下次遇到同樣格式的表格就會自動帶入。</p>
+  <div class="scroll"><div id="manualTable"></div></div>
+  <div class="row" style="margin-top:.8rem">
+    <label>表頭在第幾列 <select id="manualHeader"></select></label>
+    <label>日期欄 <select id="manualDate"></select></label>
+    <label>星期欄 <select id="manualWeek"></select></label>
+    <button id="manualConfirm" class="primary">確定</button>
+  </div>
+</div>
+
+<div class="panel hidden" id="previewPanel">
+  <h2>三、確認後下載</h2>
+  <div id="messages"></div>
+  <div id="yearMonthList"></div>
+  <div class="scroll"><div id="preview"></div></div>
+  <div class="row" style="margin-top:.9rem">
+    <button id="download" class="primary">產生檔案並下載</button>
+    <span id="outputName" class="muted"></span>
+  </div>
+</div>
+
+<script src="../vendor/jszip.min.js"></script>
+<script src="calendar-core.js"></script>
+<script src="holidays-builtin.js"></script>
+<script src="holidays-tw.js"></script>
+<script src="month-model.js"></script>
+<script src="xml-text.js"></script>
+<script src="year-month-text.js"></script>
+<script src="table-analysis.js"></script>
+<script src="write-plan.js"></script>
+<script src="excel-adapter.js"></script>
+<script src="word-adapter.js"></script>
+<script src="ui-calendar.js"></script>
+<script src="ui-main.js"></script>
+</body>
+</html>

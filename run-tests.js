@@ -10,7 +10,10 @@ var testFiles = [
   './tests/table-analysis.test.js',
   './tests/write-plan.test.js',
   './tests/xml-text.test.js',
-  './tests/excel-adapter.test.js'
+  './tests/excel-adapter.test.js',
+  './tests/word-adapter.test.js',
+  './tests/ui-calendar.test.js',
+  './tests/ui-main.test.js'
 ];
 
 testFiles.forEach(function (f) { require(f); });
